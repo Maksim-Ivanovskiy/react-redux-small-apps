@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const Modal = ({ open, setOpen }) => (
+const Modal = ({ open, setOpen, children }) => (
   <div className="overlay">
     <div className="modal">
       <svg onClick={() => setOpen(false)} height="200" viewBox="0 0 200 200" width="200">
