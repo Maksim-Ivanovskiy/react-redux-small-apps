@@ -7,20 +7,22 @@ import { Users } from './components/Users';
 
 function App() {
   const [users, setUsers] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     fetch('https://reqres.in/api/users')
-    .then(res => res.json())
-    .then(json => {
-      setUsers(json.data)
-    }).catch(err => {
-      console.warn(err);
-      alert('Error while receivend users data')
+    .then((res) => res.json())
+    .then((json) => {
+      setUsers(json.data);
     })
+    .catch((err) => {
+      console.warn(err);
+      alert('Error while receivend users data');
+    }).finally(() => setLoading(false));
   }, []);
   return (
     <div className="App">
-      <Users />
+      <Users items={users} isLoading={isLoading}/>
       {/* <Success /> */}
     </div>
   );
